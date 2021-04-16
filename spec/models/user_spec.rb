@@ -3,7 +3,35 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   let(:user) { create(:user) }
 
+  describe "#username" do
+    it "is required" do
+      user.update(username: nil)
+      expect(user).not_to be_valid
+      expect(user.errors.size).to be 1
+      expect(user.errors[:username]).to eq(["can't be blank"])
+    end
+
+    it "must be unique" do
+      user2 = build(:user, username: user.username)
+
+      expect(user2).not_to be_valid
+      expect(user2.errors.size).to be 1
+      expect(user2.errors[:username]).to eq(["has already been taken"])
+    end
+
+    it "powers the slug" do
+      expect(user.slug).to eq(user.username.parameterize)
+    end
+  end
+
   describe "#email" do
+    it "is required" do
+      user.update(email: nil)
+      expect(user).not_to be_valid
+      expect(user.errors.size).to be 1
+      expect(user.errors[:email]).to eq(["can't be blank"])
+    end
+
     it "must be unique" do
       user2 = build(:user, email: user.email)
 
