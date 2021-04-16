@@ -8,7 +8,9 @@ gem 'pg', '~> 1.2.3'
 gem 'puma', '~> 5.2.2'
 gem 'sidekiq', "~> 6.2.1"
 gem 'redis', '~> 4.2.5'
+
 gem 'bcrypt', '~> 3.1.16'
+gem 'friendly_id', "~> 5.4.2"
 
 gem 'sass-rails', '~> 6.0.0'
 gem 'webpacker', '~> 5.2.1'
