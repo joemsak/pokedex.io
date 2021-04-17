@@ -36,6 +36,6 @@ jobs:
           bundle exec rails db:migrate RAILS_ENV=test
       - name: Compile webpack
         run: |
-          bundle exec webpacker:compile RAILS_ENV=test
+          bundle exec rails webpacker:compile RAILS_ENV=test
       - name: Run tests
         run: bundle exec rspec
