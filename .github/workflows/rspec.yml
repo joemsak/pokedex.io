@@ -3,6 +3,7 @@ env:
   POSTGRES_USER: postgres
   POSTGRES_PASSWORD: postgres
   POSTGRES_DB: postgres
+  DATABASE_HOST: localhost
 
 name: RSpec
 on: [push,pull_request]
