@@ -1,4 +1,4 @@
-FROM ruby:3.0
+FROM ruby:3.0.1
 
 RUN ln -s -f /proc/1/fd/1  /dev/stdout
 
