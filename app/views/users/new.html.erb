@@ -1,0 +1,83 @@
+<%= form_with model: @user,
+  class: "w-2/5 mx-auto my-32 rounded-lg shadow-lg bg-white p-4" do |f| %>
+
+  <% if @user.errors.any? %>
+    <div class="p-4 mb-4 bg-red-400 font-bold text-gray-50 rounded-md shadow-md">
+      <h1 class="text-lg"><%= t("notices.save_failure") %></h1>
+
+      <ul class="mt-4">
+        <% @user.errors.full_messages.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <fieldset>
+    <legend class="text-2xl font-bold text-center">
+      <%= t('.form_legend') %>
+    </legend>
+
+    <div class="mt-4">
+      <%= t('common.or') %>
+
+      <%= link_to t("actions.log_in"),
+        new_session_path,
+        class: "text-blue-400 hover:text-blue-800 transition"
+      %>
+    </div>
+
+    <div class="mt-4">
+      <%= f.label :username, class: 'block font-bold cursor-pointer' %>
+
+      <%= f.text_field :username,
+        required: true,
+        class: "mt-2 py-2 px-4 w-full outline-none rounded-md border-gray-500 focus:border-gray-600 border-2"
+      %>
+    </div>
+
+    <div class="mt-4">
+      <%= f.label :email, class: 'block font-bold cursor-pointer' %>
+
+      <%= f.email_field :email,
+        required: true,
+        class: "mt-2 py-2 px-4 w-full outline-none rounded-md border-gray-500 focus:border-gray-600 border-2"
+      %>
+    </div>
+
+    <div class="mt-4">
+      <%= f.label :password, class: 'block font-bold cursor-pointer' %>
+
+      <%= f.password_field :password,
+        required: true,
+        class: "mt-2 py-2 px-4 w-full outline-none rounded-md border-gray-500 focus:border-gray-600 border-2"
+      %>
+    </div>
+
+    <div class="mt-4">
+      <%= f.label :password_confirmation, class: 'block font-bold cursor-pointer' %>
+
+      <%= f.password_field :password_confirmation,
+        required: true,
+        class: "mt-2 py-2 px-4 w-full outline-none rounded-md border-gray-500 focus:border-gray-600 border-2"
+      %>
+    </div>
+  </fieldset>
+
+  <%= f.submit t("actions.sign_up").capitalize,
+    class: "
+      mt-8
+      py-2
+      px-4
+      w-full
+      text-white
+      font-bold
+      rounded-md
+      shadow-md
+      cursor-pointer
+      bg-blue-600
+      hover:bg-blue-800
+      transition
+    "
+  %>
+<% end %>
