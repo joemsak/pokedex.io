@@ -30,6 +30,7 @@ jobs:
         run: |
           gem install bundler
           bundle install
+          yarn install
       - name: Create database
         run: |
           bundle exec rails db:create RAILS_ENV=test
