@@ -49,8 +49,13 @@ docker-compose run web rails db:migrate
 
 ```
 # With Dip
+dip bundle exec rails assets:precompile RAILS_ENV=test # AS NEEDED
+dip bundle exec rails webpacker:compile RAILS_ENV=test # AS NEEDED
+
 dip rspec
 
 # Without
+RAILS_ENV=test docker-compose run web bundle exec rails assets:precompile # AS NEEDED
+RAILS_ENV=test docker-compose run web bundle exec rails webpacker:compile # AS NEEDED
 RAILS_ENV=test docker-compose run web bundle exec rspec
 ```
