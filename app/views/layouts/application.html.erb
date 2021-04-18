@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>App</title>
+    <title>Gotta interview 'em all! &bull; Pokedex.io</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,7 +11,33 @@
     <%= stylesheet_pack_tag "application", "data-turbo-track": "reload" %>
   </head>
 
-  <body class="p-4 text-gray-700 bg-gray-100">
-    <%= yield %>
+  <body class="text-gray-700 bg-gray-100">
+    <header class="font-bold w-full flex justify-between shadow-md bg-white">
+      <h1 class="py-6 px-8 text-xl"><%= t("site.title") %></h1>
+
+      <nav class="flex">
+        <% if current_user %>
+          <%= link_to t("actions.logout"),
+            logout_path,
+            method: :delete,
+            class: "py-6 px-8 text-blue-400 hover:text-blue-800 transition"
+          %>
+        <% else %>
+          <%= link_to t("actions.log_in").capitalize,
+            signin_path,
+            class: "py-6 px-8 text-blue-400 hover:text-blue-800 transition"
+          %>
+
+          <%= link_to t("actions.sign_up").capitalize,
+            signup_path,
+            class: "py-6 px-8 text-blue-400 hover:text-blue-800 transition"
+          %>
+        <% end %>
+      </nav>
+    </header>
+
+    <main class="p-4">
+      <%= yield %>
+    </main>
   </body>
 </html>
