@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_17_024021) do
+ActiveRecord::Schema.define(version: 2021_04_18_215606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2021_04_17_024021) do
     t.integer "external_id", null: false
     t.string "image_url", null: false
     t.datetime "imported_at", null: false
-    t.bigint "pokemon_import_id", null: false
+    t.uuid "pokemon_import_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["external_id"], name: "index_pokemon_on_external_id", unique: true
@@ -62,4 +62,5 @@ ActiveRecord::Schema.define(version: 2021_04_17_024021) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "pokemon", "pokemon_imports"
 end

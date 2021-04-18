@@ -5,7 +5,7 @@ class CreatePokemon < ActiveRecord::Migration[6.1]
       t.integer :external_id, null: false
       t.string :image_url, null: false
       t.timestamp :imported_at, null: false
-      t.references :pokemon_import, null: false
+      t.references :pokemon_import, null: false, foreign_key: true, type: :uuid
 
       t.timestamps
     end
