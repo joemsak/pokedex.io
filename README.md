@@ -1,5 +1,7 @@
 # Pokedex.io
 
+[![RSpec](https://github.com/joemsak/pokedex.io/actions/workflows/rspec.yml/badge.svg)](https://github.com/joemsak/pokedex.io/actions/workflows/rspec.yml)
+
 ## Prerequisites
 
 * Docker
