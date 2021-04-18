@@ -2,6 +2,10 @@
 
 [![RSpec](https://github.com/joemsak/pokedex.io/actions/workflows/rspec.yml/badge.svg)](https://github.com/joemsak/pokedex.io/actions/workflows/rspec.yml)
 
+## Pitch
+
+[https://docs.google.com/document/d/1oO2BT4BThVz0n6ibe-mmDpWimX9EU7CcTrRzY6SXwl8/edit?usp=sharing](https://docs.google.com/document/d/1oO2BT4BThVz0n6ibe-mmDpWimX9EU7CcTrRzY6SXwl8/edit?usp=sharing)
+
 ## Prerequisites
 
 * Docker
