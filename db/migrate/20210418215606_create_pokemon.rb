@@ -10,18 +10,21 @@ class CreatePokemon < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
+
     add_index :pokemon, :name, unique: true
     add_index :pokemon, :slug, unique: true
     add_index :pokemon, :external_id, unique: true
     add_index :pokemon, :image_url, unique: true
-  end
 
-  def up
-    remove_index :pokemon, :pokemon_import_id
-    add_index :pokemon, :pokemon_import_id, unique: true
-  end
+    reversible do |dir|
+      dir.up do
+        remove_index :pokemon, :pokemon_import_id
+        add_index :pokemon, :pokemon_import_id, unique: true
+      end
 
-  def down
-    remove_index :pokemon, :pokemon_import_id
+      dir.down do
+        remove_index :pokemon, :pokemon_import_id
+      end
+    end
   end
 end

@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2021_04_18_215606) do
     t.index ["external_id"], name: "index_pokemon_on_external_id", unique: true
     t.index ["image_url"], name: "index_pokemon_on_image_url", unique: true
     t.index ["name"], name: "index_pokemon_on_name", unique: true
-    t.index ["pokemon_import_id"], name: "index_pokemon_on_pokemon_import_id"
+    t.index ["pokemon_import_id"], name: "index_pokemon_on_pokemon_import_id", unique: true
     t.index ["slug"], name: "index_pokemon_on_slug", unique: true
   end
 
