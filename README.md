@@ -20,7 +20,6 @@ dip provision
 
 # Without
 docker-compose build
-docker-compose up -d db 
 docker-compose run web ./bin/setup
 ```
 
