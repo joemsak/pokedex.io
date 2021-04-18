@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2021_04_18_215606) do
 
   create_table "pokemon", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
+    t.string "slug", null: false
     t.integer "external_id", null: false
     t.string "image_url", null: false
     t.datetime "imported_at", null: false
@@ -38,6 +39,7 @@ ActiveRecord::Schema.define(version: 2021_04_18_215606) do
     t.index ["image_url"], name: "index_pokemon_on_image_url", unique: true
     t.index ["name"], name: "index_pokemon_on_name", unique: true
     t.index ["pokemon_import_id"], name: "index_pokemon_on_pokemon_import_id"
+    t.index ["slug"], name: "index_pokemon_on_slug", unique: true
   end
 
   create_table "pokemon_imports", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

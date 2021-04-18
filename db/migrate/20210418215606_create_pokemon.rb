@@ -2,6 +2,7 @@ class CreatePokemon < ActiveRecord::Migration[6.1]
   def change
     create_table :pokemon, id: :uuid do |t|
       t.string :name, null: false
+      t.string :slug, null: false
       t.integer :external_id, null: false
       t.string :image_url, null: false
       t.timestamp :imported_at, null: false
@@ -10,6 +11,7 @@ class CreatePokemon < ActiveRecord::Migration[6.1]
       t.timestamps
     end
     add_index :pokemon, :name, unique: true
+    add_index :pokemon, :slug, unique: true
     add_index :pokemon, :external_id, unique: true
     add_index :pokemon, :image_url, unique: true
   end
