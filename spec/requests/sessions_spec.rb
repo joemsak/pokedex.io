@@ -35,7 +35,8 @@ RSpec.describe "Sessions", type: :request do
         allow(test_cookies).to receive_messages(
           encrypted: test_cookies,
           permanent: test_cookies,
-          :[]= => {}
+          :[] => nil,
+          :[]= => nil,
         )
 
         allow_any_instance_of(SessionsController).to receive(:cookies)
@@ -43,9 +44,10 @@ RSpec.describe "Sessions", type: :request do
 
         post sessions_path, params: credentials.merge(remember_me: true)
 
-        expect(test_cookies).to have_received(:encrypted)
-        expect(test_cookies).to have_received(:permanent)
+        expect(test_cookies).to have_received(:encrypted).at_least(:once)
+        expect(test_cookies).to have_received(:permanent).at_least(:once)
         expect(test_cookies).to have_received(:[]=)
+          .once
           .with(ApplicationController::AUTH_TOKEN, "abc123")
       end
     end

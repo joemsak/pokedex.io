@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+  before_action :authenticate_user!, only: :destroy
+  before_action :require_no_authentication, except: :destroy
+
   def create
     @user = User.find_by(username: session_params[:username])
 
@@ -8,6 +11,11 @@ class SessionsController < ApplicationController
     else
       redirect_to new_session_path, alert: t(".alert")
     end
+  end
+
+  def destroy
+    sign_out
+    redirect_to signin_path
   end
 
   private

@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, except: [:new, :create]
+  before_action :require_no_authentication, only: [:new, :create]
+
   def new
     @user = User.new
   end
