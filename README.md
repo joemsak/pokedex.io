@@ -5,7 +5,7 @@
 * Docker
 * Docker Compose
 * Dip (optional)
-* * https://github.com/bibendi/dip
+  * https://github.com/bibendi/dip
 
 ## Setup / Install
 
