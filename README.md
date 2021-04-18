@@ -1,24 +1,57 @@
-# README
+# Pokedex.io
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Prerequisites
 
-Things you may want to cover:
+* Docker
+* Docker Compose
+* Dip (optional)
+** https://github.com/bibendi/dip
 
-* Ruby version
+## Setup / Install
 
-* System dependencies
+```
+git clone git@github.com:joemsak/pokedex.io.git
+cd pokedex.io
+```
 
-* Configuration
+```
+# With Dip
+dip provision
 
-* Database creation
+# Without
+docker-compose build
+docker-compose up -d db 
+docker-compose run web ./bin/setup
+```
 
-* Database initialization
+## Running the app
 
-* How to run the test suite
+```
+# With Dip
+dip up -d webpack sidekiq
+dip up web
 
-* Services (job queues, cache servers, search engines, etc.)
+# Without
+docker-compose up -d sidekiq webpack
+docker-compose up web
+```
 
-* Deployment instructions
+## Migrations
 
-* ...
+```
+# With Dip
+dip rails db:migrate (rollback, drop, create, reset, etc)
+
+# Without
+docker-compose run web rails db:migrate
+```
+
+## Run tests
+
+```
+# With Dip
+dip rspec
+
+# Without
+RAILS_ENV=test docker-compose run web bundle exec rspec
+```
