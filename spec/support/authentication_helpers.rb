@@ -1,10 +1,14 @@
 module AuthenticationHelpers
-  def sign_in(user)
-    allow_any_instance_of(ApplicationController).to receive(:current_user) { user }
+  def sign_in(scope)
+    @signed_in_scope ||= create(scope)
+    allow_any_instance_of(ApplicationController).to receive(:current_user)
+      .and_return(@signed_in_scope)
   end
 
   def sign_out
-    allow_any_instance_of(ApplicationController).to receive(:current_user) { nil }
+    @signed_in_scope = nil
+    allow_any_instance_of(ApplicationController).to receive(:current_user)
+      .and_return(nil)
   end
 end
 
