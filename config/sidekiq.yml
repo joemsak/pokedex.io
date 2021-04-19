@@ -2,9 +2,4 @@
 :concurrency: 5
 :pidfile: tmp/pids/sidekiq.pid
 :queues:
-  - app_development_mailers
-  - app_production_mailers
-  - app_test_mailers
-  - app_development_default
-  - app_production_default
-  - app_test_default
+  - default
