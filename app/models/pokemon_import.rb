@@ -20,7 +20,7 @@ class PokemonImport < ApplicationRecord
   end
 
   def name
-    data.fetch(:name) { "not found" }.titleize
+    data.fetch(:name) { "not found #{SecureRandom.hex(8)}" }.titleize
   end
 
   def external_id
