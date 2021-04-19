@@ -9,6 +9,12 @@ gem 'puma', '~> 5.2.2'
 gem 'sidekiq', "~> 6.2.1"
 gem 'redis', '~> 4.2.5'
 
+#
+# TODO: Next cycle: https://github.com/rdavid1099/poke-api-v2
+#
+# gem 'poke-api-v2'
+#
+
 gem 'email_validator', "~> 2.2.3", require: 'email_validator/strict'
 gem 'bcrypt', '~> 3.1.16'
 gem 'friendly_id', "~> 5.4.2"
