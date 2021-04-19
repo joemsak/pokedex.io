@@ -31,7 +31,9 @@ class PokemonImport < ApplicationRecord
     #
     # TODO: provide a missing image asset
     #
-    data.dig(:sprites, :front_default) || "missing.png"
+    data.dig(:sprites, :front_default) ||
+      data.dig(:sprites, :other, "official-artwork", :front_default) ||
+        "missing-#{SecureRandom.hex(8)}.png"
   end
 
   def data
