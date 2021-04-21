@@ -8,14 +8,7 @@ RSpec.describe PokemonImportJob, type: :job do
 
     let(:url) { result["url"] }
 
-    before do
-      stub_request(:get, url)
-        .to_return(
-          body: data,
-          status: 200,
-          headers: { 'Content-Length' => data.size }
-        )
-    end
+    before { stub_request_response(url, body: data) }
 
     context "for a new URL" do
       let(:result) { { "url" => "https://example.org/api/v2/pokemon/1" } }
