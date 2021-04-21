@@ -50,6 +50,7 @@ group :test do
   gem 'webdrivers', "~> 4.6.0"
   gem 'factory_bot_rails', "~> 6.1.0"
   gem 'rspec-rails', "~> 5.0.1"
+  gem "webmock", "~> 3.12.2"
   gem 'rails-controller-testing', "~> 1.0.5"
 end
 

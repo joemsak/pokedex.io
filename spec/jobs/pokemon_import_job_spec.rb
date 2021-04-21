@@ -4,10 +4,17 @@ RSpec.describe PokemonImportJob, type: :job do
   describe "#perform" do
     let(:data) { File.read("./spec/support/api_data/pokemon_detail.json") }
 
+    let(:result) { raise 'define a { "url" => "value" } hash for your context' }
+
+    let(:url) { result["url"] }
+
     before do
-      allow(Net::HTTP).to receive(:get_response)
-        .with(URI(result["url"]))
-        .and_return(double(:response, read_body: data))
+      stub_request(:get, url)
+        .to_return(
+          body: data,
+          status: 200,
+          headers: { 'Content-Length' => data.size }
+        )
     end
 
     context "for a new URL" do
@@ -22,7 +29,7 @@ RSpec.describe PokemonImportJob, type: :job do
 
         import = PokemonImport.last
 
-        expect(import.url).to eq(result["url"])
+        expect(import.url).to eq(url)
         expect(import.data).to eq(JSON.parse(data))
       end
     end
