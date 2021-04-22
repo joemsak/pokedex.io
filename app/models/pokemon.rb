@@ -1,4 +1,6 @@
 class Pokemon < ApplicationRecord
+  self.per_page = 20 # Pokeapi.co default is currently 20
+
   extend FriendlyId
   friendly_id :name, use: :slugged
 
