@@ -2,4 +2,8 @@
   <%= t(".greeting", name: current_user.username) %>
 </h1>
 
-<p class="mt-4">Find me in app/views/user/dashboards/show.html.erb</p>
+<h2 class="font-bold text-xl">Your captures</h2>
+
+<ol class="flex flex-wrap">
+  <%= render partial: 'pokemon/pokemon', collection: @pokemon %>
+</ol>

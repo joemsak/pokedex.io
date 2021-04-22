@@ -1,0 +1,53 @@
+<li class="text-center w-1/4 mb-8">
+  <%= image_tag pokemon.image_url,
+    class: "m-auto",
+    alt: "#{pokemon.name}'s avatar"
+  %>
+
+  <p class="text-gray-400">
+    <%= "#" + "#{pokemon.external_id}".rjust(3, "0") %>
+  </p>
+
+  <p class="font-bold mb-4">
+    <%= pokemon.name %>
+  </p>
+
+  <% if current_user.pokemon.include?(pokemon) %>
+    <%= form_with(
+          method: :delete,
+          url: [pokemon, pokemon.captures.find_by(user: current_user)]
+        ) do |f| %>
+      <%= f.submit t("actions.release").titleize,
+        class: "
+          py-2
+          px-4
+          rounded-sm
+          shadow-md
+          cursor-pointer
+          bg-blue-400
+          hover:bg-blue-900
+          hover:text-white
+          transition
+        "
+      %>
+    <% end %>
+  <% else %>
+    <%= form_with(url: [pokemon, pokemon.captures.build]) do |f| %>
+      <%= f.hidden_field :name, Faker::Name.name %>
+
+      <%= f.submit t("actions.capture").titleize,
+        class: "
+          py-2
+          px-4
+          rounded-sm
+          shadow-md
+          cursor-pointer
+          bg-red-400
+          hover:bg-red-900
+          hover:text-white
+          transition
+        "
+      %>
+    <% end %>
+  <% end %>
+</li>
