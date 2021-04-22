@@ -1,4 +1,6 @@
 en:
   actions:
+    capture: capture
     log_in: log in
+    release: release
     sign_up: sign up

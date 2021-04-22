@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_18_215606) do
+ActiveRecord::Schema.define(version: 2021_04_22_174849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "captures", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.uuid "pokemon_id", null: false
+    t.datetime "captured_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.index ["pokemon_id"], name: "index_captures_on_pokemon_id"
+    t.index ["user_id", "pokemon_id"], name: "index_captures_on_user_id_and_pokemon_id", unique: true
+    t.index ["user_id"], name: "index_captures_on_user_id"
+  end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
@@ -64,5 +76,7 @@ ActiveRecord::Schema.define(version: 2021_04_18_215606) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "captures", "pokemon"
+  add_foreign_key "captures", "users"
   add_foreign_key "pokemon", "pokemon_imports"
 end

@@ -3,6 +3,10 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   mount Sidekiq::Web => "/sidekiq"
 
+  resources :pokemon, only: :index do
+    resources :captures, only: [:create, :destroy]
+  end
+
   namespace :user do
     resource :dashboard, only: :show
   end

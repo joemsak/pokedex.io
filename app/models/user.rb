@@ -10,4 +10,7 @@ class User < ApplicationRecord
     presence: true
 
   validates :email, email: { mode: :strict }
+
+  has_many :captures
+  has_many :pokemon, through: :captures
 end

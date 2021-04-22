@@ -16,4 +16,7 @@ class Pokemon < ApplicationRecord
     uniqueness: true
 
   validates :imported_at, presence: true
+
+  has_many :captures
+  has_many :users, through: :captures
 end
