@@ -19,4 +19,8 @@ class Pokemon < ApplicationRecord
 
   has_many :captures
   has_many :users, through: :captures
+
+  def number
+    ["#", external_id.rjust(3, "0")].join
+  end
 end
