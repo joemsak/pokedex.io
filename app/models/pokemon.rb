@@ -21,6 +21,11 @@ class Pokemon < ApplicationRecord
   has_many :users, through: :captures
 
   def number
-    ["#", external_id.rjust(3, "0")].join
+    ["#", padded_external_id].join
+  end
+
+  private
+  def padded_external_id
+    String(external_id).rjust(3, "0")
   end
 end
